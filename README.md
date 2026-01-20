@@ -6,7 +6,7 @@ A high-performance system featuring a custom-built HTTP Server and a real-time C
 
 This section showcases the primary operating interface of the application, including server logs and real-time request handling.
 
-![Main Interface: Terminal logs showing HTTP request processing and system status](main_screenshot.png)
+![Main Interface: Terminal logs showing HTTP request processing and system status](main_screenshot.jpg)
 
 ## Core Architecture
 - **apps/**: Application logic for the web server.
