@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+<head>
+    <title>bksysnet@hcmut welcome</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 48px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid #e5e7eb;
+        }
+        
+        h1 {
+            color: #1f2937;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+        
+        p {
+            color: #6b7280;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        
+        .user-info {
+            background: #f9fafb;
+            padding: 18px 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .user-info strong {
+            color: #374151;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .user-info #displayUsername {
+            color: #111827;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .role-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .role-admin {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .role-user {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin: 28px 0;
+            flex-wrap: wrap;
+        }
+        
+        .chat-button {
+            display: inline-block;
+            padding: 12px 28px;
+            background: #b0bace;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.15s;
+        }
+        
+        .chat-button:hover {
+            background: #6b7ba8;
+        }
+        
+        .logout-button {
+            display: inline-block;
+            padding: 12px 28px;
+            background: #6b7280;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        
+        .logout-button:hover {
+            background: #4b5563;
+        }
+        
+        .features-box {background: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 28px 0;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .features-box strong {
+            color: #374151;
+            font-size: 16px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 12px;
+        }
+        
+        .features-box p {
+            color: #6b7280;
+            line-height: 1.8;
+            margin: 0;
+        }
+        
+        .welcome-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            margin: 28px auto;
+            display: block;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 32px 24px;
+            }
+            
+            h1 {
+                font-size: 26px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .chat-button, .logout-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <h1>🎓 bksysnet@hcmut Domain</h1>
+    <p>Welcome to the CO3094 WeApRous Chat Platform!<br>
+    This domain is for use in illustrative examples in documents.
+    </p>
+    
+    <div class="user-info" id="userInfoBox">
+        <strong> Logged in as:</strong> <span id="displayUsername">Loading...</span>
+        <span id="roleBadge" class="role-badge">Loading...</span>
+    </div>
+    
+    <a href="/chat_discord.html" class="chat-button"> Enter Chat Room</a>
+    <button onclick="logout()" class="logout-button"> Logout</button>
+    
+  
+    <img src="images/welcome.png" alt="bksysnet at HCMUT" width="500" height="600">  
+</div>
+
+<script>
+    // Get cookies function
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+        return null;
+    }
+
+    // Display user info on page load
+    window.addEventListener('DOMContentLoaded', () => {
+        const username = getCookie('username');
+        const role = getCookie('role');
+        
+        if (username && role) {
+            document.getElementById('displayUsername').textContent = username;
+            const roleBadge = document.getElementById('roleBadge');
+            roleBadge.textContent = role.toUpperCase();
+            roleBadge.className = `role-badge role-${role}`;
+        } else {
+            // If no cookies, redirect to login
+            window.location.href = '/login.html';
+        }
+    });
+
+    function logout() {
+        if (confirm('🚪 Are you sure you want to logout?')) {
+            // Clear all auth cookies
+            document.cookie = 'auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            document.cookie = 'username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            document.cookie = 'role=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            // Redirect to login
+            window.location.href = '/login.html';
+        }
+    }
+</script>
+
+</body>
+</html>
